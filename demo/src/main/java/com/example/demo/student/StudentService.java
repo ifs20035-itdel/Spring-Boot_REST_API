@@ -19,14 +19,6 @@ public class StudentService {
 
 
     public List<Student> getStudents() {
-        return List.of(
-                new Student(
-                        1L,
-                        "Michael",
-                        "asm34686@gmail.com",
-                        21,
-                        LocalDate.of(2002, Month.APRIL, 23)
-                )
-        );
+        return studentRepository.findAll();
     }
 }
