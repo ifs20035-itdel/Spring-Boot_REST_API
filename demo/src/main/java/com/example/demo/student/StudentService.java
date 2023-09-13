@@ -7,6 +7,7 @@ import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -24,8 +25,11 @@ public class StudentService {
     }
 
     public void addStudent(Student student) {
-        if (!this.studentRepository.findStudentByEmail(student.getEmail())) {
-            this.studentRepository.save(student);
+        Optional<Student> studentOptional
+                = studentRepository.findStudentByEmail(student.getEmail());
+        if(studentOptional.isPresent()){
+            throw new IllegalStateException("email taken");
         }
+        studentRepository.save(student);
     }
 }
