@@ -44,6 +44,7 @@ public class StudentService {
         studentRepository.deleteById(studentId);
     }
 
+    @Transactional
     public void editStudent(
             Long studentId,
             String name,
