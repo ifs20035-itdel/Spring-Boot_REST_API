@@ -1,5 +1,7 @@
 package com.example.demo.student;
 
+import jakarta.persistence.Transient;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,8 +38,13 @@ public class StudentService {
     public void removeStudent(Long studentId) {
         boolean exists = studentRepository.existsById(studentId);
         if(!exists){
-            throw new IllegalStateException("Student with id " + studentId + "doesn't exists");
+            throw new IllegalStateException("Student with id " + studentId + " doesn't exists");
         }
         studentRepository.deleteById(studentId);
+    }
+
+    public Student editStudent(Long studentId, String name, String email) {
+        Student exist = studentRepository.existsById(studentId);
+
     }
 }
